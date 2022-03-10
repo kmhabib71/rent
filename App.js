@@ -1,21 +1,25 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  SafeAreaView,
+  Platform,
+} from "react-native";
+import PostItems from "./src/components/postItems";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>This is our core project</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.SafeAreaViewForDroid}>
+      <PostItems />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  SafeAreaViewForDroid: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fec85c",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
   },
 });
