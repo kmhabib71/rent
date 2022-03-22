@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -12,7 +11,6 @@ import styles from "./styles";
 const PostItems = () => {
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" backgroundColor="#fec85c" />
       <View style={styles.postWrap}>
         <Image
           source={{ uri: "https://picsum.photos/200/300" }}
