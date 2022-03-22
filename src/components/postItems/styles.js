@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../modal/color";
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     // backgroundColor: "#fec85c60",
   },
   postWrap: {
