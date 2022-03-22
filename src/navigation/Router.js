@@ -7,7 +7,7 @@ import postDetails from "../screens/postDetails";
 
 const Route = () => {
   const Stack = createStackNavigator();
-
+  //Its a comment
   return (
     <NavigationContainer>
       <Stack.Navigator>
