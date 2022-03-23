@@ -4,6 +4,10 @@ import Home from "./src/screens/Home";
 import { colors } from "./src/modal/color";
 import Route from "./src/navigation/Router";
 import "react-native-gesture-handler";
+
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "./src/aws-exports";
+Amplify.configure(awsconfig);
 export default function App() {
   return (
     <SafeAreaView style={styles.SafeAreaViewForDroid}>
