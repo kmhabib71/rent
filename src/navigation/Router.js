@@ -5,6 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../screens/Home";
 import postDetails from "../screens/postDetails";
 import BottomTabNav from "./BottomTabNavigator";
+import SelectPhotosScreen from "../screens/selectPhotos";
+import SelectCategoryScreen from "../screens/selectCategory";
+import SelectLocationScreen from "../screens/selectLocation";
 const Route = () => {
   const Stack = createStackNavigator();
   //Its a comment
@@ -18,12 +21,28 @@ const Route = () => {
         }}>
         <Stack.Screen
           name="Home"
+          // component={SelectCategoryScreen}
           component={BottomTabNav}
           options={{ headerShown: false }}
         />
         <Stack.Screen
           name="PostDetails"
           component={postDetails}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SelectPhoto"
+          component={SelectPhotosScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SelectCategory"
+          component={SelectCategoryScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SelectLocation"
+          component={SelectLocationScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

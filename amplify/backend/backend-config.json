@@ -1,6 +1,6 @@
 {
   "auth": {
-    "rent451c3956": {
+    "rent63a91263": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

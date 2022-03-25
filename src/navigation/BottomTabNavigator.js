@@ -21,7 +21,7 @@ const BottomTabNav = () => {
         tabBarActiveTintColor: colors.secondary,
         tabBarStyle: { backgroundColor: colors.primary, height: 50 },
       }}
-      sceneContainerStyle={{ backgroundColor: colors.backgroundColor }}>
+      sceneContainerStyle={{ backgroundColor: colors.background }}>
       <Tab.Screen
         name={"Explore"}
         component={Home}
