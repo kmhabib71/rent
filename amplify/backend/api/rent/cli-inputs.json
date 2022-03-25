@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "rent",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "C:\\Users\\Km Habib\\Documents\\GitHub\\Rent_Project\\rent\\amplify\\backend\\api\\rent\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "AWS_IAM"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authrent63a91263"
+      }
+    ]
+  }
+}
