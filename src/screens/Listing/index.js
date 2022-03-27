@@ -9,10 +9,11 @@ import {
   TextInput,
   Image,
   ScrollView,
+  Alert,
 } from "react-native";
 import styles from "./styles";
 import { withAuthenticator } from "aws-amplify-react-native";
-import { Auth } from "aws-amplify";
+import { Auth, Storage, API, graphqlOperation } from "aws-amplify";
 import { AntDesign } from "@expo/vector-icons";
 import { colors } from "../../modal/color";
 import { Octicons } from "@expo/vector-icons";
@@ -21,30 +22,49 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
+import { createListing } from "../../graphql/mutations";
 const Listing = () => {
   const navigation = useNavigation();
+  const [imageData, setImageData] = useState([]);
   const [category, setCategory] = useState({ catID: 0, catName: "Category" });
   const [Location, setLocation] = useState({ locID: 0, locName: "Location" });
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [rentValue, setRentValue] = useState("");
+  const [userID, setUserID] = useState("");
+  const [postSuccess, setPostSuccess] = useState("");
+  const [postProcessing, setPostProcessing] = useState(false);
 
+  useEffect(() => {
+    if (postSuccess !== "") {
+      setPostProcessing(false);
+      Alert.alert("Success", postSuccess, [
+        {
+          text: "Ok",
+          onPress: () => navigation.navigate("Home", { screen: "Explore" }),
+        },
+      ]);
+    }
+  }, [postSuccess]);
   Auth.currentAuthenticatedUser()
     .then((user) => {
       console.log("user id is: ", user.attributes.sub);
+      setUserID(user.attributes.sub);
     })
     .catch((err) => {
       console.log(err);
       throw err;
     });
 
-  const [imageData, setImageData] = useState([]);
   const route = useRoute();
   useEffect(() => {
     if (!route.params) {
       console.log("There is no data in route");
     } else {
       if (route.params.imageData !== undefined) {
+        // console.log(route.params.imageData);
         setImageData(route.params.imageData);
       } else if (route.params.catID !== undefined) {
         setCategory(route.params);
@@ -54,9 +74,48 @@ const Listing = () => {
     }
   });
 
+  const imageAllUrl = [];
+  const storeToDB = async () => {
+    setPostProcessing(true);
+    imageData &&
+      imageData.map(async (compnent, index) => {
+        const imageUrl = compnent.uri;
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const urlParts = imageUrl.split(".");
+        const extension = urlParts[urlParts.length - 1];
+        const key = `${uuidv4()}.${extension}`;
+        imageAllUrl.push({ imageUri: key });
+        await Storage.put(key, blob);
+
+        if (imageData.length == index + 1) {
+          const postData = {
+            title: title,
+            categoryName: category.catName,
+            categoryID: category.catID,
+            description: description,
+            images: JSON.stringify(imageAllUrl),
+            locationID: Location.locID,
+            locationName: Location.locName,
+            rentValue: rentValue,
+            userID: userID,
+            commonID: "1",
+          };
+
+          await API.graphql({
+            query: createListing,
+            variables: { input: postData },
+            authMode: "AMAZON_COGNITO_USER_POOLS",
+          });
+
+          setPostProcessing(false);
+          setPostSuccess("Your adv have successfully published.");
+        }
+      });
+  };
   // Auth.signOut();
   return (
-    <View style={{ margin: 10 }}>
+    <ScrollView style={{ margin: 10 }}>
       <View>
         <Text style={{ marginTop: 10 }}>Upload images [Max 5 photos]</Text>
         <Pressable
@@ -156,7 +215,9 @@ const Listing = () => {
           keyboardType="numeric"
         />
       </View>
-      <View
+      <Pressable
+        onPress={() => storeToDB()}
+        android_ripple={{ color: "grey" }}
         style={{
           margin: 10,
           borderRadius: 30,
@@ -173,10 +234,10 @@ const Listing = () => {
             fontSize: 14.5,
             fontWeight: "bold",
           }}>
-          POST ADV
+          {postProcessing ? "Processing..." : "POST ADV"}
         </Text>
-      </View>
-    </View>
+      </Pressable>
+    </ScrollView>
   );
 };
 

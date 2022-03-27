@@ -44,7 +44,7 @@ const SelectLocationScreen = () => {
 
   return (
     <ScrollView>
-      <Text style={{ fontSize: 20, margin: 20 }}>Choose a Category</Text>
+      <Text style={{ fontSize: 20, margin: 20 }}>Select a Location</Text>
       {locState.names.map((item, index) => (
         <Pressable
           key={item.id}
