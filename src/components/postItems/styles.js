@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     // backgroundColor: "#fec85c60",
+    marginBottom: 10,
   },
   postWrap: {
     display: "flex",
@@ -16,6 +17,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5,
+    overflow: "hidden",
   },
   postImage: {
     height: 100,

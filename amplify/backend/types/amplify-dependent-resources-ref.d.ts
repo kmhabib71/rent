@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "auth": {
-        "rent63a91263": {
+        "rent37c3dc964": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -11,13 +11,13 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "rent": {
+        "rent3": {
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
     },
     "storage": {
-        "RentProject": {
+        "rentproject3": {
             "BucketName": "string",
             "Region": "string"
         }

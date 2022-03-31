@@ -12,12 +12,12 @@ export const getListing = /* GraphQL */ `
       images
       locationID
       locationName
+      owner
       rentValue
       userID
       commonID
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -37,12 +37,12 @@ export const listListings = /* GraphQL */ `
         images
         locationID
         locationName
+        owner
         rentValue
         userID
         commonID
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -50,7 +50,7 @@ export const listListings = /* GraphQL */ `
 `;
 export const getListingByCreatedAt = /* GraphQL */ `
   query GetListingByCreatedAt(
-    $commonID: String!
+    $commonID: String
     $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelListingFilterInput
@@ -74,12 +74,12 @@ export const getListingByCreatedAt = /* GraphQL */ `
         images
         locationID
         locationName
+        owner
         rentValue
         userID
         commonID
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

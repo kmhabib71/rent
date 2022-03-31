@@ -1,7 +1,7 @@
 {
-  "resourceName": "RentProject",
-  "policyUUID": "fcb606d4",
-  "bucketName": "rentbucket",
+  "resourceName": "rentproject3",
+  "policyUUID": "cb7c4216",
+  "bucketName": "rentbucket3",
   "storageAccess": "authAndGuest",
   "guestAccess": [
     "READ"
