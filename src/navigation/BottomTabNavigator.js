@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, SafeAreaView, Platform } from "react-native";
+import { StyleSheet, SafeAreaView, Platform, Dimensions } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../screens/Home";
@@ -11,15 +11,22 @@ import PostDetails from "../screens/postDetails";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import Listing from "../screens/Listing";
-const BottomTabNav = () => {
-  const Tab = createBottomTabNavigator();
 
+const BottomTabNav = () => {
+  const windowWidth = Number(Dimensions.get("window").width);
+
+  const Tab = createBottomTabNavigator();
+  // alert(windowWidth);
   return (
     <Tab.Navigator
       screenOptions={{
         // tabBarActiveBackgroundColor: colors.primary,
         tabBarActiveTintColor: colors.secondary,
-        tabBarStyle: { backgroundColor: colors.primary, height: 50 },
+        tabBarStyle: {
+          backgroundColor: colors.primary,
+          height: 50,
+          display: windowWidth > 800 ? "none" : "flex",
+        },
       }}
       sceneContainerStyle={{ backgroundColor: colors.background }}>
       <Tab.Screen

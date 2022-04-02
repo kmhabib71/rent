@@ -12,7 +12,24 @@ const Route = () => {
   const Stack = createStackNavigator();
   //Its a comment
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      linking={{
+        prefixes: ["myapp://", "https://bhara.com", "https://*.bhara.com"],
+        config: {
+          screens: {
+            Home: {
+              screens: {
+                Explore: "/Explore",
+                Listing: "/Listing",
+                Chat: "/Chat",
+                Profile: "/Profile",
+              },
+            },
+            SelectLocation: "/SelectLocation",
+            PostDetails: "/PostDetails",
+          },
+        },
+      }}>
       <Stack.Navigator
         screenOptions={{
           cardStyle: {
