@@ -24,7 +24,7 @@ const MenuDetailsForDesktop = (props) => {
   const navigation = useNavigation();
   const windowWidth = Number(Dimensions.get("window").width);
   return (
-    <View style={{ position: "absolute", top: -20, right: "9.2%" }}>
+    <View style={{ position: "absolute", top: props.top, right: props.right }}>
       <View
         style={{
           display: props.menuToggle
