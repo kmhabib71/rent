@@ -15,7 +15,7 @@ const PostItems = (props) => {
   const navigation = useNavigation();
   const singlePost = props.post;
   const [images, setimages] = useState(JSON.parse(singlePost.images));
-  console.log(singlePost);
+  // console.log(singlePost);
   return (
     <Pressable
       onPress={() => {

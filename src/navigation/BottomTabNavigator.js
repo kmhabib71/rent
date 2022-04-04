@@ -11,7 +11,8 @@ import PostDetails from "../screens/postDetails";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import Listing from "../screens/Listing";
-
+import { FontAwesome5 } from "@expo/vector-icons";
+import LendBorrowerNavScreen from "./LendBorrNav";
 const BottomTabNav = () => {
   const windowWidth = Number(Dimensions.get("window").width);
 
@@ -54,12 +55,14 @@ const BottomTabNav = () => {
         }}
       />
       <Tab.Screen
-        name={"Chat"}
-        component={Home}
+        name={"Journal"}
+        component={LendBorrowerNavScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Entypo name="chat" size={24} color="black" />
+            <FontAwesome5 name="journal-whills" size={24} color="black" />
           ),
+
+          headerShown: false,
         }}
       />
       <Tab.Screen

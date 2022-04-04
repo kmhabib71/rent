@@ -54,7 +54,7 @@ const Listing = () => {
       allowsMultipleSelection: true,
     });
 
-    console.log(result);
+    // console.log(result);
 
     if (!result.cancelled) {
       setImageData(result.selected);
@@ -73,7 +73,7 @@ const Listing = () => {
   }, [postSuccess]);
   Auth.currentAuthenticatedUser()
     .then((user) => {
-      console.log("user id is: ", user.attributes.sub);
+      // console.log("user id is: ", user.attributes.sub);
       setUserID(user.attributes.sub);
       setUserEmail(user.attributes.email);
     })

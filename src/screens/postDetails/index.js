@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -9,6 +9,8 @@ import {
   Image,
   ScrollView,
   Dimensions,
+  Pressable,
+  Alert,
 } from "react-native";
 import PostItems from "../../components/postItems";
 import HeaderForMobile from "../../components/headerForMobile";
@@ -16,20 +18,65 @@ import { colors } from "../../modal/color";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import HeaderForDesktop from "../../components/headerForDesktop";
 import MenuDetailsForDesktop from "../../components/menuDetailsForDesktop";
+import { API, Auth } from "aws-amplify";
+import { createRentOrder } from "../../graphql/mutations";
 const PostDetails = () => {
   const windowWidth = Number(Dimensions.get("window").width);
   const route = useRoute();
   const navigation = useNavigation();
-  console.log("Postdetails title is: ", route.params.postInfo.title);
+  // console.log("Postdetails title is: ", route.params.postInfo.title);
   const [images, setimages] = useState(
     JSON.parse(route.params.postInfo.images)
   );
-  const [userEmail, setUserEmail] = useState(route.params.postInfo.owner);
-  const substrEmail = userEmail.substr(0, userEmail.indexOf("@"));
+  const [lenderUserEmail, setLenderUserEmail] = useState(
+    route.params.postInfo.owner
+  );
+  const [userEmail, setUserEmail] = useState("");
+  const substrEmail = lenderUserEmail.substr(0, lenderUserEmail.indexOf("@"));
   // setUserEmail(substrEmail);
   const [menuToggle, setMenuToggle] = useState(false);
+  const [userID, setUserID] = useState("");
+
+  Auth.currentAuthenticatedUser()
+    .then((user) => {
+      // console.log("user id is: ", user.attributes.sub);
+      setUserID(user.attributes.sub);
+      setUserEmail(user.attributes.email);
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
+  const [postSuccess, setPostSuccess] = useState("");
+  useEffect(() => {
+    if (postSuccess !== "") {
+      Alert.alert("Success", postSuccess, [
+        {
+          text: "Ok",
+          onPress: () => navigation.navigate("Home", { screen: "Explore" }),
+        },
+      ]);
+    }
+  }, [postSuccess]);
+  const orderToDB = async () => {
+    const postData = {
+      advId: route.params.postInfo.id,
+      borrowerUserId: userID,
+      lenderUserID: route.params.postInfo.userID,
+      rentValue: route.params.postInfo.rentValue,
+      borrowerEmailID: userEmail,
+      lenderEmailID: lenderUserEmail,
+      commonID: "1",
+    };
+    await API.graphql({
+      query: createRentOrder,
+      variables: { input: postData },
+      authMode: "AMAZON_COGNITO_USER_POOLS",
+    });
+    setPostSuccess("Your order have successfully placed.");
+  };
   return (
-    <>
+    <View style={{ flex: 1, position: "relative" }}>
       <HeaderForDesktop setMenuToggle={setMenuToggle} menuToggle={menuToggle} />
       <View style={{ alignItems: "center" }}>
         <View
@@ -149,7 +196,7 @@ const PostDetails = () => {
             </View>
           </View>
           <View style={{ margin: 10 }}>
-            <Text style={{ color: colors.grey }}>
+            <Text style={{ color: colors.secondary, fontWeight: "bold" }}>
               Preferred Meetup Location
             </Text>
             <Text style={{ color: colors.secondary }}>
@@ -157,15 +204,36 @@ const PostDetails = () => {
             </Text>
           </View>
           <View style={{ margin: 10 }}>
-            <Text style={{ color: colors.grey }}>Description</Text>
+            <Text style={{ color: colors.secondary, fontWeight: "bold" }}>
+              Description
+            </Text>
             <Text style={{ color: colors.secondary }}>
               {route.params.postInfo.description}
             </Text>
           </View>
         </View>
       </View>
+      <Pressable
+        onPress={orderToDB}
+        style={{
+          position: "absolute",
+          bottom: 10,
+          right: windowWidth > 800 ? "15%" : "40%",
+        }}>
+        <Text
+          style={{
+            backgroundColor: colors.secondary,
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            borderRadius: 50,
+            color: colors.white,
+            elevation: 5,
+          }}>
+          ORDER
+        </Text>
+      </Pressable>
       <MenuDetailsForDesktop menuToggle={menuToggle} top={59} right={"7.8%"} />
-    </>
+    </View>
   );
 };
 

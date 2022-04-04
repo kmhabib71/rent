@@ -18,6 +18,7 @@ import {
   MaterialIcons,
   AntDesign,
   FontAwesome,
+  FontAwesome5,
 } from "@expo/vector-icons";
 import { colors } from "../../modal/color";
 const MenuDetailsForDesktop = (props) => {
@@ -46,14 +47,21 @@ const MenuDetailsForDesktop = (props) => {
         }}>
         <View>
           <Pressable
+            onPress={() => {
+              navigation.navigate("Home", { screen: "Journal" });
+            }}
             style={{
               flexDirection: "row",
               justifyContent: "flex-start",
               alignItems: "center",
               marginBottom: 10,
             }}>
-            <Entypo name="chat" size={24} color={colors.white} />
-            <Text style={{ color: colors.white, marginLeft: 10 }}>Chat</Text>
+            <FontAwesome5
+              name="journal-whills"
+              size={24}
+              color={colors.white}
+            />
+            <Text style={{ color: colors.white, marginLeft: 10 }}>Journal</Text>
           </Pressable>
           <Pressable
             style={{

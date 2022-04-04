@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Km Habib\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add expo-image-picker
+  C:\Program Files\nodejs\node.exe C:\Users\Km Habib\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @react-navigation/material-top-tab
 
 PATH: 
   C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\python\python391\Scripts\;C:\python\python391\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\AMD\ATI.ACE\Core-Static;C:\flutter\bin;C:\Program Files\Java\jdk-16.0.2\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\OpenJDK\openjdk-8u302-b08\bin;C:\Users\Km Habib\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\nodejs\;C:\Program Files\OpenJDK\openjdk-11.0.13_8\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\Brackets\command;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs\;C:\Users\Km Habib\AppData\Local\Microsoft\WindowsApps;C:\Users\Km Habib\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Km Habib\AppData\Roaming\Composer\vendor\bin;C:\Users\Km Habib\AppData\Local\Programs\Python\Python39;C:\Users\Km Habib\AppData\Local\Programs\Python\Python39\Scripts;C:\Program Files\heroku\bin;C:\Users\Km Habib\AppData\Local\GitHubDesktop\bin;C:\Users\Km Habib\AppData\Local\Android\Sdk\cmdline-tools\latest\bin;C:\Users\Km Habib\AppData\Local\Android\Sdk\platform-tools;C:\Program Files (x86)\Java\jre1.8.0_301\bin;C:\Users\Km Habib\AppData\Roaming\npm
@@ -14,7 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\Km Habib\Documents\GitHub\Rent_Project\rent\node_modules\@aws-sdk\client-location\node_modules\@aws-sdk\middleware-retry\node_modules\.bin'
+  Error: https://registry.yarnpkg.com/@react-navigation%2fmaterial-top-tab: Not found
+      at Request.params.callback [as _callback] (C:\Users\Km Habib\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
+      at Request.self.callback (C:\Users\Km Habib\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
+      at Request.emit (node:events:520:28)
+      at Request.<anonymous> (C:\Users\Km Habib\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141634:10)
+      at Request.emit (node:events:520:28)
+      at IncomingMessage.<anonymous> (C:\Users\Km Habib\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141556:12)
+      at Object.onceWrapper (node:events:639:28)
+      at IncomingMessage.emit (node:events:532:35)
+      at endReadableNT (node:internal/streams/readable:1346:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
   {
@@ -40,6 +50,7 @@ npm manifest:
       "aws-amplify-react-native": "^6.0.3",
       "expo": "~44.0.0",
       "expo-image-manipulator": "^10.2.1",
+      "expo-image-picker": "^12.0.2",
       "expo-images-picker": "^2.2.5",
       "expo-media-library": "^14.0.1",
       "expo-status-bar": "~1.2.0",
@@ -4779,6 +4790,14 @@ Lockfile:
     dependencies:
       expo-image-loader "~3.1.0"
   
+  expo-image-picker@^12.0.2:
+    version "12.0.2"
+    resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-12.0.2.tgz#4789c5419208ff8ede557784368a7f18f3878c30"
+    integrity sha512-rAoNGtofV5cg3UN+cdIGDVfbMvbutBX6uNV7jCIEw/WZxZlbW+R7HC8l5lGDFtoLVqcpkHE/6JpAXvESxVSAOA==
+    dependencies:
+      "@expo/config-plugins" "^4.0.2"
+      uuid "7.0.2"
+  
   expo-images-picker@^2.2.5:
     version "2.3.0"
     resolved "https://registry.npmjs.org/expo-images-picker/-/expo-images-picker-2.3.0.tgz"
@@ -7870,6 +7889,11 @@ Lockfile:
     version "3.3.2"
     resolved "https://registry.npmjs.org/uuid/-/uuid-3.3.2.tgz"
     integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
+  
+  uuid@7.0.2:
+    version "7.0.2"
+    resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.2.tgz#7ff5c203467e91f5e0d85cfcbaaf7d2ebbca9be6"
+    integrity sha512-vy9V/+pKG+5ZTYKf+VcphF5Oc6EFiu3W8Nv3P3zIh0EqVI80ZxOzuPfe9EHjkFNvf8+xuTHVeei4Drydlx4zjw==
   
   uuid@^3.0.0, uuid@^3.2.1, uuid@^3.3.2, uuid@^3.4.0:
     version "3.4.0"
