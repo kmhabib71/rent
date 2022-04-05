@@ -8,6 +8,8 @@ import BottomTabNav from "./BottomTabNavigator";
 import SelectPhotosScreen from "../screens/selectPhotos";
 import SelectCategoryScreen from "../screens/selectCategory";
 import SelectLocationScreen from "../screens/selectLocation";
+import LocationSearch from "../components/locationSearch";
+import CategorySearch from "../components/categorySearch";
 const Route = () => {
   const Stack = createStackNavigator();
   //Its a comment
@@ -60,6 +62,16 @@ const Route = () => {
         <Stack.Screen
           name="SelectLocation"
           component={SelectLocationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="LocationSearch"
+          component={LocationSearch}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CategorySearch"
+          component={CategorySearch}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
